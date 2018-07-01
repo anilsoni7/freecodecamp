@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- viewreport for mobile device better support -->
+		<meta name="viewreport" content="width=device-width, initial-scale=1.0" >
+		<meta charset="UTF-8">
+
+		<!-- Title for the page -->
+		<title>Quotes | Anil Soni</title>
+
+		<!-- Bootstrap cdn 3.3.7 -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" >
+
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+		<!-- Bootstrap javascript -->
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  		
+  		<script>
+  				$("document").ready(function(){
+  					
+  					function fetch(){
+  						 $.ajax({
+
+						  		type: "POST",
+						  		url:"https://andruxnet-random-famous-quotes.p.mashape.com/?cat=famous",
+						  	
+						  		dataType:"json",
+
+						  		headers:{
+						  			"X-Mashape-Key": "I7a9NhdL62mshjd5LKvSBZoodJSap1q7MAyjsnhy3masYEvqNs",
+						  			"Content-Type": "application/x-www-form-urlencoded",
+						  			"Accept": "application/json"
+						  		},
+
+						  		beforeSend: function(){
+						  				$("#quote-content").html("Please Wait!..");
+						  		},
+						  		success: function(result){
+						  				
+						  				$("#quote-content").html(result.quote);
+						  				$("#quote-author").html("-"+result.author);
+						  				$("#tweet").attr("href", 'https://twitter.com/intent/tweet?text='+result.quote+'via@anil_sonii');
+
+						  				
+						  		},
+
+						  		error: function(){
+						  			alert('Error');
+						  		}
+
+						  });
+
+
+  					}
+
+  					fetch();
+  					$('#get-another-quote-button').on('click', function(e) {
+						
+
+							fetch();						  
+						 
+						
+						  });
+  					
+  						
+  						
+  					
+				});
+  		</script>
+
+  		<style>
+  		*{
+  			font-family: monospace;
+  			box-sizing: border-box;
+  			
+  		}
+			.card {
+			    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+			    transition: 0.3s;
+			    border-radius: 5px; /* 5px rounded corners */
+			    background-color:#fff;
+			    padding: 20px;
+			}
+
+			/* On mouse-over, add a deeper shadow */
+			.card:hover {
+			    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+			}
+
+			/* Add some padding inside the card container */
+			.container {
+			    padding: 5px 16px;
+			    margin-left:150px;
+			}
+
+  		
+  		
+
+  		body{
+  			
+  			background-color:#edecec;
+  		}
+  		</style>
+  	</head>
+
+<body>
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+	<div class="navbar-header">
+		<div class="navbar-brand">
+			Anil Soni
+		</div>
+	</div>
+	<ul class="nav navbar-nav">
+		<li class="active"><a href="#">Home</a></li>
+
+	</ul>
+	</div>
+</nav>
+<div class="container-fluid">
+	<div class="col-xs-offset-4 col-xs-4">
+		<h2> Random Quote Machine </h2>
+
+		<div class="card">
+				<p id="quote-content"></p>
+			<div class="container col-xs-8" id="quote-author">
+					Anil Soni
+			</div>
+			<button type="#" class="btn btn-default" id="get-another-quote-button">Next</button>
+			<a class="btn btn-primary" id="tweet" href=""> Tweet</a>
+			
+			
+		</div>
+
+		
+ 			
+	</div>
+
+</div>
+
+	
+</body>
+</html>

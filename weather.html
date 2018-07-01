@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- viewreport for mobile device better support -->
+		<meta name="viewreport" content="width=device-width, initial-scale=1.0" >
+		<meta charset="UTF-8">
+
+		<!-- Title for the page -->
+		<title>Weather | Anil Soni</title>
+
+		<!-- Bootstrap cdn 3.3.7 -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" >
+
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+
+		<!-- Bootstrap javascript -->
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  		
+
+
+  		<style>
+  		*{
+  			font-family: monospace;
+  			box-sizing: border-box;
+  			
+  		}
+			.card {
+			    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+			    transition: 0.3s;
+			    border-radius: 5px; /* 5px rounded corners */
+			    background-color:#fff;
+			    padding: 20px;
+			}
+
+			/* On mouse-over, add a deeper shadow */
+			.card:hover {
+			    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+			}
+
+			/* Add some padding inside the card container */
+			.container {
+			    padding: 5px 16px;
+			    margin-left:150px;
+			}
+
+  		
+  		
+
+  		body{
+  			
+  			background-color:#edecec;
+  		}
+  		</style>
+  	</head>
+
+<body>
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+	<div class="navbar-header">
+		<div class="navbar-brand">
+			Anil Soni
+		</div>
+	</div>
+	<ul class="nav navbar-nav">
+		<li class="active"><a href="#">Home</a></li>
+
+	</ul>
+	</div>
+</nav>
+<div class="container-fluid ">
+	<div class="col-xs-offset-4 col-xs-4">
+		<h2> Local Weather App </h2>
+
+		<div class="card">
+		<p id="weather-lat-lon"></p>
+
+				<p id="weather-content"> </p>
+					<p id="img-deg" ><span id="weather-img" style=""></span><span id="weather-deg" style="font-size:2em;"></span></p>
+					<p id="weather-tab-data"></p>
+			
+			<button type="#" id="get-weather-btn">Get Weather</button>
+			<button type="#" id="convertToF" style="display:none;">Convert To farhenheit</button>
+			<button type="#" id="convertToC" style="display:none;">Convert To Celsius</button>			
+			
+			
+		</div>
+		<div class="col-xs-offset-4" id="weather-author">
+							<a href="http://www.openweathermap.org" target="_blank">openweather.org</a>
+			</div>
+
+		
+ 			
+	</div>
+
+</div>
+
+
+<script>
+  				$("document").ready(function(){
+  						var lat,lon,val;
+  						var exsist = false;
+
+  					if(navigator.geolocation){
+  						navigator.geolocation.getCurrentPosition(function(position){
+  								lat = position.coords.latitude;
+  								lon = position.coords.longitude;
+  								$("#weather-lat-lon").html("lat = " + lat + "<br/>lon = " + lon);
+  						});
+  					}
+
+  					if(!exsist){
+  						var Url = "http://ipinfo.io/json";
+            		    jQuery.getJSON(Url).done(function(data){
+                  		alert(data.city + " " + data.country + " " + data.loc);
+                	});	
+  					}
+  					 
+            
+  					
+  					function kelvinToCelsius(data){
+  						return (Math.round(data - 273)+" C");
+  					}
+
+  					function celsiusToFahrenheit(data){
+  						return (data * (9/5) + 32) + " F";
+  					}
+
+  					function kelvinToFahrenheit(data){
+  						return (Math.round(data * (9/5) - 459.67)) + " F";
+  					}
+
+  					$("#convertToC").on('click',function(e){
+  						e.preventDefault();
+  						$("#weather-deg").html("<b>" + kelvinToCelsius(val) + "</b>" );
+  						$("#convertToF").show();
+  						$(this).hide();
+
+  					});
+  					$("#convertToF").on('click',function(e){
+  						e.preventDefault();
+  						$("#weather-deg").html("<b>" + kelvinToFahrenheit(val) + "</b>" );
+  						$("#convertToC").show();
+  						$(this).hide();
+  					});
+  					function fetchWeather(){
+  						 $.ajax({
+								type: "GET",
+						  		url:"http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon +"&appid=828f95b983b7c5a9a393798108992d28",
+						  		
+						  		beforeSend: function(){
+						  				$("#get-weather-btn").html('Please Wait!..');
+						  		},
+						  		success: function(result){
+						  				$("#get-weather-btn").html('Done...');
+						  		$("#weather-content").append("<br/><b>Weather in " + result.name + ", " + result.sys.country);
+						  		
+
+						  		$("#weather-img").html("<img src=http://openweathermap.org/img/w/"+ result.weather[0].icon +
+												".png alt = " + result.weather[0].description + " title = " +result.weather[0].description+ " />" 
+
+						  			);	
+						  		$("#weather-deg").html(
+						  				"<b>" + kelvinToCelsius(result.main.temp) + "</b>"
+						  			);
+						  			val = result.main.temp;
+						  				var sunrise = new Date(result.sys.sunrise);
+						  				var sunset = new Date(result.sys.sunset);
+						  		$("#weather-tab-data").html(
+						  				"<table border='1' cellpadding='10' cellspacing='2'><tr><td>Wind</td>" +
+						  				"<td>"+result.wind.speed + 
+						  				"<br /> Deg ="+result.wind.deg +
+						  				"</td></tr>" +
+						  				"<tr><td>Coludiness</td><td>" + result.clouds.all + 
+						  				"</td></tr>" +
+						  				"<tr><td>Pressure</td><td>" + result.main.pressure +
+						  				"</td><tr>" +
+						  				"<tr><td>Humidity</td><td>" + result.main.humidity +
+						  				"</td></tr>" +
+						  				"<tr><td>Sunrise</td><td>" + sunrise.getHours() +" : " + sunrise.getMinutes()+ " : " + sunrise.getSeconds()+ 
+						  				"</td></tr>" +
+						  				"<tr><td>Sunset</td><td>" + sunset.getHours() +" : " + sunset.getMinutes()+ " : " + sunset.getSeconds()+ 
+						  				"</td></tr>" +
+						  				"<tr><td>Geo Coords</td><td>[" + result.coord.lat + ", "+
+						  					result.coord.lon + 
+						  				"]</td></tr></table>" 
+						  			);
+
+						  		$("#convertToF").show();
+						  					
+						  				
+						  					
+						  		},
+
+						  		error: function(){
+						  			alert('Error');
+						  		}
+							});
+						}
+  						
+						
+						$("#get-weather-btn").on('click',function(e){
+								e.preventDefault();
+								fetchWeather();
+						});
+					});
+  		</script>	
+</body>
+</html>

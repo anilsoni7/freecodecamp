@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- viewreport for mobile device better support -->
+		<meta name="viewreport" content="width=device-width, initial-scale=1.0" >
+		<meta charset="UTF-8">
+
+		<!-- Title for the page -->
+		<title>Portfolio | Anil Soni</title>
+
+		<!-- Bootstrap cdn 3.3.7 -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" >
+
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+		<!-- Bootstrap javascript -->
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  		<style>
+  		body{
+  			position: relative;
+  			font-family: monospace;
+  			font-size:2em;
+  		}
+  		.affix{
+  			top:0;
+  			width:100%;
+  			z-index:9999 !important;
+
+  		}
+  		nav{
+  			margin:0px;
+  		}
+  		.inline {
+  			display: inline;
+  			margin-left:10px;
+  			margin-right:20px;
+  			color:white !important;
+  		}
+  		div{
+  			margin:0px;
+  		}
+
+  		* {
+		  box-sizing: border-box;
+
+		  
+		}
+
+		
+		.content {
+		 overflow: auto;
+ 		 position: relative;
+ 		 height:600px;
+		}
+		#c-home:before {
+			  content: "";
+			  position: fixed;
+			  left: 0;
+			  right: 0;
+			  z-index: -1;
+			  background-color:  #1E88E5;
+
+			  display: block;
+			  
+			  width: 100%;
+			  height: 600px;
+
+			  -webkit-filter: blur(5px);
+			  -moz-filter: blur(5px);
+			  -o-filter: blur(5px);
+			  -ms-filter: blur(5px);
+			  filter: blur(5px);
+			}
+
+			#c-about:before {
+			  content: "";
+			  position: fixed;
+			  left: 0;
+			  right: 0;
+			  z-index: -1;
+			  background-color: #673ab7;
+
+			  display: block;
+			  
+			  width: 100%;
+			  height: 600px;
+
+			  -webkit-filter: blur(5px);
+			  -moz-filter: blur(5px);
+			  -o-filter: blur(5px);
+			  -ms-filter: blur(5px);
+			  filter: blur(5px);
+			}
+
+			#c-portfolio:before {
+			  content: "";
+			  position: fixed;
+			  left: 0;
+			  right: 0;
+			  z-index: -1;
+			  background-color: #ff9800;
+
+			  display: block;
+			  
+			  width: 100%;
+			  height: 600px;
+
+			  -webkit-filter: blur(5px);
+			  -moz-filter: blur(5px);
+			  -o-filter: blur(5px);
+			  -ms-filter: blur(5px);
+			  filter: blur(5px);
+			}
+
+			#c-contact:before {
+			  content: "";
+			  position: fixed;
+			  left: 0;
+			  right: 0;
+			  z-index: -1;
+			  background-color: #00bcd4;
+
+			  display: block;
+			  
+			  width: 100%;
+			  height: 600px;
+
+			  -webkit-filter: blur(5px);
+			  -moz-filter: blur(5px);
+			  -o-filter: blur(5px);
+			  -ms-filter: blur(5px);
+			  filter: blur(5px);
+			}
+
+  		#image-a{
+  			border:1px solid transparent;
+  			border-radius: 100%;
+  		}
+  		a{
+  			text-decoration: none;
+  			color:#fff;
+  		}
+  		.center{
+  			margin:0 auto;
+  		}
+  		</style>
+
+	</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+
+		<div class="container-fluid">
+			<h1>Portfolio</h1>
+			<h4>Designed by Anil Soni</h4>
+
+		</div>
+		<nav class="navbar navbar-inverse" data-spy="affix" data-offset="100">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<div class="navbar-brand">
+					Anil Soni
+				</div>
+			</div>
+			<ul class="nav navbar-nav">
+				<li><a href="#home">Home</a></li>
+				<li><a href="#about">About</a></li>
+				<li><a href="#portfolio">portfolio</a></li>
+				<li><a href="#contact">contact</a></li>
+			</ul>
+			
+		</div> 
+		</nav>
+		
+		<!-- Section for Home  -->
+		<div id="home" class="container-fluid">
+			<div></div>
+			<div class="content" id="c-home">
+			<br /> <br /> 
+				<div class="col-xs-4 col-xs-offset-4">
+				<h2>Anil Soni</h2>
+				<hr />
+
+				<div class="inline" id="twitter">
+						<a href="https://twitter.com/anil_sonii" title="twitter" >Twitter</a>
+					</div>
+					<div class="inline" id="fb">
+						<a href="https://www.facebook.com/mR.AS07" title="facebook">Facebook</a>
+					</div>
+					<div class="inline" id="github">
+					<a href="https://github.com/anilsoni7" title="github">GitHub</a>
+					</div>
+
+					<div class="inline" id="freeCodeCamp">
+						<a href="https://www.freecodecamp.com/anilsoni7" title="Free Code Camp">Free Code Camp</a>
+					</div>
+					</div>
+
+			</div> <!-- home content with id=home -->	
+		</div><!-- Home Container fluid -->
+
+		<!-- Section for About -->
+		<div id="about" class="container-fluid">
+			<div></div>
+			<div class="content" id="c-about">
+				<br /> <br />
+				<h2>About</h2>
+				<hr />
+				<div class="col-xs-8">
+					<h2>Anil Soni</h2>
+					<p>I am Studying B.Tech CSE in specialization in Cloud Based Application </p>
+					<p>I am Currently trying to be a part of web-development team to help non-profit organizations</p>
+					<p>My passion is to use technology and build better application to help solve real world problem</p>
+					<br />
+					<p>Languages and frameworks</p>
+					<p>HTML5, CSS3, JQuery, Bootstrap, Laravel</p>
+					<p>Php , J2EE, Java, Python</p>
+
+				</div>
+
+				<div class="col-xs-4">
+									
+					<img src="https://s23.postimg.org/6orna8p7f/DSC_1003.jpg" class="img-responsive image-a" alt='Image'/>
+				</div>
+			</div><!-- Content with id="about" -->
+		</div> <!-- main div with class container-fluid -->
+
+
+		<!-- Section for portfolio -->
+
+		<div id="portfolio" class="container-fluid">
+			<div></div>
+			<div class="content" id="c-portfolio">
+			<br /><br/><br />
+			<h2>Portfolio</h2>
+			<hr />
+			<div class="row">
+			<div class="col-xs-4">
+				<p>Responsive web design</p>
+				<a href="https://codepen.io/anilsoni/pen/QGQvPM" title="Responsive web design" target="_blank">Responsive web design</a>
+			</div>
+				<div class="col-xs-4">
+					<p>Tribute Page</p>
+					<a href="https://codepen.io/anilsoni/pen/oYmaxP" title="Missile man of india" target="_blank">Tribute Page</a>
+				</div>
+				
+			</div>
+
+		</div>
+		</div>
+
+		<!-- Section for Contact -->
+
+		<div id="contact" class="container-fluid">
+			<div></div>
+			<div class="content" id="c-contact">
+			<br /><br />
+			<h2>Contact</h2>
+			<hr />
+			<div class="col-xs-8">
+				<p>Connect with Anil Soni:</p>
+				<p>anky.soni8460@gmail.com</p>
+				<br />
+				<br /> <br /><br />
+				Made in <i class="fa fa-love"></i> with <i class="fa fa-music"></i> by Anil Soni 
+			</div>
+			<div class="col-xs-4">
+				<p>	<center>Connect with </center></p>
+
+					<p><a href="https://twitter.com/anil_sonii" title="twitter" >Twitter</a></p>
+
+						<p><a href="https://www.facebook.com/mR.AS07" title="facebook">Facebook</a></p>
+					
+					<p><a href="https://github.com/anilsoni7" title="github">GitHub</a></p>
+					
+						<p><a href="https://www.freecodecamp.com/anilsoni7" title="Free Code Camp">Free Code Camp</a></p>
+
+						<p><a href="https://www.instagram.com/m_addict_" title="Instagram">Instagram</a></p>
+
+					</div>
+				</div>
+			

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta name="viewreport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+
+		<!-- Title for the page -->
+		<title>Wikipedia | Anil Soni</title>
+
+		<!-- Bootstrap cdn 3.3.7 -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" >
+
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+
+		<!-- Bootstrap javascript -->
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  		
+
+	</head>
+<body>
+<input type="text" name="Wikipedia" placeholder="text" />
+<button type="submit" id="btn">Search</button>
+<script>
+ $(document).ready(function(){
+        $('#btn').click(function() {
+            $.ajax({
+                url: 'http://en.wikipedia.org/w/api.php',
+                data: { action: 'query', list: 'search', srsearch: $("input[name=Wikipedia]").val(), format: 'json' },
+                dataType: 'jsonp',
+                success: processResult
+            });
+        });
+    }); 
+
+  function processResult(apiResult){
+  	for(var key in apiResult){
+
+  		for(var keys in apiResult[key]){
+
+  			for(var keyss in apiResult[key][keys]){
+  				$("#display-result").append('<p> key = ' + key + ' keys = ' + keys + ' keyss = ' + keyss + ' api result = ' +apiResult + ' apiresult[key] = ' + apiResult[key] + ' apiResult[key][keys] = ' + apiResult[key][keys] + '   apiResult[key][keys][keyss] = ' + apiResult[key][keys][keyss]   );
+  			}
+  		}
+  	}
+     /*for (var i = 0; i < apiResult.query.search.length; i++){
+          $('#display-result').append('<p>'+apiResult.query.search[i].title+'</p>');
+     }*/
+  }
+</script>
+
+<div id="display-result"></div>
+</body>
+</html>
